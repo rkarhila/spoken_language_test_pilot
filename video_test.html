@@ -1,0 +1,281 @@
+<html>
+<header>
+<meta charset="UTF-8">
+
+<style>
+
+body {
+    background: #7744AA;
+}
+
+#container {
+    position: absolute;
+    top: 0;
+    bottom: 100;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 90%;
+}
+
+#stimulusvideo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90%;
+}
+
+#uservideo {
+    position: absolute;
+    bottom: 120;
+    right: 20;
+    width: 320;
+    height: 200;
+    background: #888888;
+}
+
+#controls {
+    position: absolute;
+    bottom:10;
+    right: 40;
+    font-size: 22pt;
+}
+
+#recording {
+    position: absolute;
+    bottom: 120;
+    right: 20;
+    width: 315;
+    height: 40;
+    color: red;
+    font-weight: bold;
+    font-size: 22pt;
+    visibility: hidden;
+}
+/* From:  */
+.blink_me {
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+
+    -moz-animation-name: blinker;
+    -moz-animation-duration: 2s;
+    -moz-animation-timing-function: linear;
+    -moz-animation-iteration-count: infinite;
+
+    animation-name: blinker;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@-moz-keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.2; }
+    100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.2; }
+    100% { opacity: 1.0; }
+}
+
+@keyframes blinker {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.2; }
+    100% { opacity: 1.0; }
+}
+
+
+/* From http://www.corelangs.com/css/box/fulloverlay.html */
+
+
+#cover{ 
+   position:fixed; 
+   top:0; 
+   left:0; 
+   background:rgba(0,0,0,0.6); 
+   z-index:5; 
+   width:100%; 
+   height:100%; 
+   display:none; 
+}
+#infoScreen { 
+   height:90%; 
+   width:340px; 
+   margin:0 auto; 
+   position:relative; 
+   z-index:10; 
+   display:none; 
+   background: #ffffff; 
+   border:5px solid #cccccc; 
+   border-radius:10px;
+   padding: 15px; 
+} 
+#infoScreen:target, #infoScreen:target + #cover{ 
+  display:block; 
+  opacity:2; 
+}
+.allClear { 
+  display:block; 
+/*  position:absolute; 
+  top:3px; 
+  right:2px; 
+  background:rgb(245,245,245); 
+  color:black; 
+  height:30px; 
+  width:35px; */
+  font-size:20px; 
+  text-decoration:none; 
+  text-align:center; 
+  font-weight:bold;
+   border:2px solid #cccccc; 
+   border-radius:7px;   
+}
+
+</style>
+
+
+</header>
+<body>
+
+
+<video src=01.webm id=stimulusvideo></video>
+
+<video autoplay id=uservideo></video>
+
+<script>
+// Button functions
+
+var videotimesec = 0;
+var videotimefracs = 0;
+
+setInterval(function(){ 
+   incrementTimer();
+   document.getElementById('recording').innerHTML="&#9724; REC "+videotimesec+"."+videotimefracs; 
+}, 0.1*1000 );
+
+function incrementTimer() {
+   if (videotimefracs < 9) {
+     videotimefracs+=1;
+   }
+   else {
+     videotimesec+=1; 
+     videotimefracs=0; 
+   }
+}
+function resetVideoTimer() {
+     videotimesec=0; 
+     videotimefracs=0;   
+}
+
+
+function playFirstVideoAndStartRecording() {
+    video1=document.getElementById('stimulusvideo');
+    btn=document.getElementById('playandrec');
+    rectext=document.getElementById('recording');
+    rectext.style.visibility= "hidden";
+    video1.play();
+    btn.disabled=true;
+    btn.value="kuuntele";
+    setTimeout(function(){
+      resetVideoTimer();      
+      rectext.style.visibility= "visible";
+      video1.src="02.webm";
+      btn.value="Lopeta nauhoitus";
+      btn.disabled=false;
+      setTimeout(function(){
+        btn.click();
+      }, 15*1000);
+    },video1.duration*1000);
+}
+</script>
+
+<div id=controls>
+<input type=button id=playandrec onclick='playFirstVideoAndStartRecording()' value="Aloita"></input>
+<a href="#infoScreen" class="button">Info</a> 
+</div>
+
+<div id=recording class=blink_me>&#9724; REC</div>
+
+
+ 
+<div id="infoScreen"> 
+<h2>Tehtävä 3</h2>
+<p>Enosi golf-kaveri Börje soittelee taas. Yrität pitää häneen hyvät välit, jotta saisitte taas ensi kesänä lainata hänen venettään. Börjen kanssa jutteleminen on kuin kohtaaminen espanjan inkvisition kanssa: Kysymys toisensa perään, hyvä kun ehdit edelliseen vastata niin uutta tulee ja aihekin vaihtuu useasti ja loogisesti kuin yksipyöräisellä ajava karhu.
+<p>
+Ohjeet:
+<ul>
+<li>Paina "Aloita"-nappia
+<li>Kuuntele kysymys ja vastaa siihen.
+<ul>
+<li>Sinulla on 15 sekuntia aikaa vastata. 
+<li>Nauhoitus alkaa heti kysymyksen jälkeen ja loppuu automaattisesti.
+<li>Jos vastaat kysymykseen nopeammin, voit siirtyä seuraavaan kysymykseen "lopeta nauhoittaminen"-napilla.
+<li>Uusi kysymys alkaa heti kun olet vastannut edelliseen.
+</ul>
+<li>Toista kunnes kyllästyt.
+<li>Jos haluat tauon, pidä se nyt tai kysymyssarjan jälkeen.
+</ul>
+<a href="#" class="allClear">Tämä selvä!</a>
+
+</div>
+<div id="cover" > 
+  bar
+</div> 
+
+
+
+
+<script>
+
+function hasGetUserMedia() {
+  return !!(navigator.getUserMedia || navigator.webkitGetUserMedia ||
+            navigator.mozGetUserMedia || navigator.msGetUserMedia);
+}
+
+if (hasGetUserMedia()) {
+  // Good to go!
+} else {
+  alert('getUserMedia() is not supported in your browser');
+}
+
+
+var videosizeConstraints = {
+  video: {
+    mandatory: {
+      maxWidth: 320,
+      maxHeight: 200
+    }
+  },
+   audio:true
+};
+
+
+  var errorCallback = function(e) {
+    console.log('Reeeejected!', e);
+  };
+
+  // Not showing vendor prefixes.
+navigator.getUserMedia  = navigator.getUserMedia ||
+                          navigator.webkitGetUserMedia ||
+                          navigator.mozGetUserMedia ||
+                          navigator.msGetUserMedia;
+
+
+
+  navigator.getUserMedia(videosizeConstraints, function(localMediaStream) {
+    var uservideo = document.getElementById('uservideo');
+    uservideo.src = window.URL.createObjectURL(localMediaStream);
+
+    // Note: onloadedmetadata doesn't fire in Chrome when using it with getUserMedia.
+    // See crbug.com/110938.
+    uservideo.onloadedmetadata = function(e) {
+      // Ready to go. Do some stuff.
+    };
+  }, errorCallback);
+</script>
+
