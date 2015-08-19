@@ -58,7 +58,7 @@ if (hasGetUserMedia()) {
   alert('getUserMedia() is not supported in your browser');
 }
 
-
+/*
 var videosizeConstraints = {
   video: {
     mandatory: {
@@ -82,7 +82,8 @@ navigator.getUserMedia  = navigator.getUserMedia ||
                           navigator.msGetUserMedia;
 
 
-
+*/
+/*
   navigator.getUserMedia(videosizeConstraints, function(localMediaStream) {
     var uservideo = document.getElementById('uservideo');
     uservideo.src = window.URL.createObjectURL(localMediaStream);
@@ -94,4 +95,4 @@ navigator.getUserMedia  = navigator.getUserMedia ||
     };
   }, errorCallback);
 
-
+*/

@@ -242,9 +242,19 @@ function gotStream(stream) {
     inputPoint.connect( zeroGain );
     zeroGain.connect( audioContext.destination );
     updateAnalysers();
+
+
+    var uservideo = document.getElementById('uservideo');
+    uservideo.src = window.URL.createObjectURL(stream);
+
+    // Note: onloadedmetadata doesn't fire in Chrome when using it with getUserMedia.
+    // See crbug.com/110938.
+    uservideo.onloadedmetadata = function(e) {
+	// Ready to go. Do some stuff.
+    };
 }
 
-function initAudio() {
+function initAudioAndVideo() {
         if (!navigator.getUserMedia)
             navigator.getUserMedia = navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
         if (!navigator.cancelAnimationFrame)
@@ -263,10 +273,16 @@ function initAudio() {
                 },
                 "optional": []
             },
+	    "video": {
+		"mandatory": {
+		    "maxWidth": 320,
+		    "maxHeight": 200
+		}
+	    },	    
         }, gotStream, function(e) {
             alert('Error getting audio');
             console.log(e);
         });
 }
 
-window.addEventListener('load', initAudio );
+window.addEventListener('load', initAudioAndVideo );
