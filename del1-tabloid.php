@@ -10,7 +10,7 @@ require 'php/header.php';
    <p>
    Selaimesi on: 
    <?php 
-   require 'get_browser_info.php';
+   require 'php/get_browser_info.php';
 $ua=get_browser_info();
 
 echo "<b>" . $ua['name'] . "</b> " . $ua['version'] . " (" .$ua['platform'] . "). "; // reports: <br >" . $ua['userAgent'] ;
