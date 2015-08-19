@@ -66,7 +66,7 @@ var videosizeConstraints = {
       maxHeight: 200
     }
   },
-   audio:false
+   audio:true
 };
 
 
@@ -75,6 +75,7 @@ var videosizeConstraints = {
   };
 
   // Not showing vendor prefixes.
+
 navigator.getUserMedia  = navigator.getUserMedia ||
                           navigator.webkitGetUserMedia ||
                           navigator.mozGetUserMedia ||
@@ -92,3 +93,5 @@ navigator.getUserMedia  = navigator.getUserMedia ||
       // Ready to go. Do some stuff.
     };
   }, errorCallback);
+
+
