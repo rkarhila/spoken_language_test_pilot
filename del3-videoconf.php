@@ -49,10 +49,16 @@ Vastaa hänen kysymyksiinsä. Sinulla on 10 sekuntia vastausaikaa kunkin kysymyk
 
 
 </div>
+<?php
+  require 'php/controls.php'
+?>
 
+                        
 <script type=text/javascript>
-
-  var currentTask=0;
+var allowRerecording = false;                                                                                  
+var currentVideo=1;
+var videoCount=5;
+var currentTask=0;
 var maxRecLenth=10;
 
 tasks=['Toivotat onnea syntymäpäiväsankarille',
@@ -62,21 +68,13 @@ tasks=['Toivotat onnea syntymäpäiväsankarille',
 
 
 function nextTask() {
-  currentTask++;
-  if (currentTask<4) 
-    {
-      document.getElementById("headline").innerHTML="";
-      /*document.getElementById("listenButton").disabled=true;
-      document.getElementById("nextButton").disabled=true;*/
-    }		   
-  else {
-    window.location.href = "del3-videoconf.php";
-  }
+    window.location.href = "del4-par.php";
 }
 
   function overrideToggleRecording(thing) {
-    document.getElementById("headline").innerHTML=tasks[currentTask];
-    toggleRecording(thing)
+      playFirstVideoAndStartRecording();
+      //document.getElementById("headline").innerHTML=tasks[currentTask];
+      //toggleRecording(thing)
   }
 
 
@@ -84,9 +82,7 @@ function nextTask() {
 </script>
 
 
-<?php
-  require 'php/controls.php'
-?>
+
 
 </div>
 

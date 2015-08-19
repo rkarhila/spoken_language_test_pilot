@@ -54,6 +54,8 @@ Reagoi, kun kuulet tilanteen numeron. Sinulla on  20 sekuntia aikaa sanoa vastau
 
 <script type=text/javascript>
 
+
+ var allowRerecording = false;                                                                                  
   var currentTask=0;
 var maxRecLenth=10;
 
@@ -68,6 +70,8 @@ function nextTask() {
   if (currentTask<4) 
     {
       document.getElementById("headline").innerHTML="";
+      $id("record").disabled=false;
+      $id("nextButton").disabled=true;
       /*document.getElementById("listenButton").disabled=true;
       document.getElementById("nextButton").disabled=true;*/
     }		   
@@ -78,7 +82,8 @@ function nextTask() {
 
   function overrideToggleRecording(thing) {
     document.getElementById("headline").innerHTML=tasks[currentTask];
-    toggleRecording(thing)
+    toggleRecording(thing);
+
   }
 
 

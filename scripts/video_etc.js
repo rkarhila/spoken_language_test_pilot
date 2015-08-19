@@ -5,45 +5,54 @@ var videotimefracs = 0;
 var videovisible = 0;
 setInterval(function(){ 
     if (videovisible) {
-      incrementTimer();
-      document.getElementById('recording').innerHTML="&#9724; REC "+videotimesec+"."+videotimefracs; 
+	incrementTimer();
+	document.getElementById('recording').innerHTML="&#9724; REC "+videotimesec+"."+videotimefracs; 
     }
 }, 0.1*1000 );
 
 function incrementTimer() {
-   if (videotimefracs < 9) {
-     videotimefracs+=1;
-   }
-   else {
-     videotimesec+=1; 
-     videotimefracs=0; 
-   }
+    if (videotimefracs < 9) {
+	videotimefracs+=1;
+    }
+    else {
+	videotimesec+=1; 
+	videotimefracs=0; 
+    }
 }
 function resetVideoTimer() {
-     videotimesec=0; 
-     videotimefracs=0;   
-     videovisible=1;
+    videotimesec=0; 
+    videotimefracs=0;   
+    videovisible=1;
 }
 
 
 function playFirstVideoAndStartRecording() {
-  videovisible=0;
+    videovisible=0;
     video1=document.getElementById('stimulusvideo');
-    btn=document.getElementById('playandrec');
+    btn=document.getElementById('record');
     rectext=document.getElementById('recording');
     rectext.style.visibility= "hidden";
     video1.play();
     btn.disabled=true;
     btn.value="kuuntele";
     setTimeout(function(){
-      resetVideoTimer();      
-      rectext.style.visibility= "visible";
-      video1.src="02.webm";
-      btn.value="Lopeta nauhoitus";
-      btn.disabled=false;
-      setTimeout(function(){
-        btn.click();
-      }, 15*1000);
+	resetVideoTimer();      
+	rectext.style.visibility= "visible";
+	if (currentVideo < videoCount) {
+	    video1.src="0"+(++currentVideo)+".webm";
+	}
+	btn.value="Lopeta nauhoitus";
+	btn.disabled=false;
+	setTimeout(function(){
+	    if (currentVideo == videoCount) {
+		rectext.style.visibility= "hidden";
+		btn.style.visibility = "hidden";
+		document.getElementById('nextButton').disabled=false;
+		video1.pause();		
+	    }
+	    else
+		btn.click();
+	}, 10*1000);
     },video1.duration*1000);
 }
 

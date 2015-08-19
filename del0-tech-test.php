@@ -85,7 +85,7 @@ else {
 </div>
 
 <script type=text/javascript>
-
+var allowRerecording = false;                                                                                  
   var currentTask=1;
 
 function nextTask() {

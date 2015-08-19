@@ -55,6 +55,8 @@ Vi köper begagnade kläder i gott skick
 
 <script type=text/javascript>
 
+
+  var allowRerecording = true;                                                                                  
   var currentTask=0;
 
 tasks=['Vi köper begagnade kläder i gott skick', 

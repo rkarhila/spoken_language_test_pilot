@@ -24,9 +24,10 @@ body {
     height: 90%;*/
 }
 #prompts {
-   
-   margin: 40; 
-   margin-right: 370px;
+    margin-top: 50px;
+    margin-left: 240;
+    width: 540px;
+   /*margin-right: 370px;*/
    position:relative; 
    /*z-index:10; */
    /*display:none; */
@@ -197,7 +198,7 @@ body {
 }
 #infoScreen { 
    /*height:90%; */
-   width:340px; 
+   width:540px; 
    margin:0 auto; 
    position:relative; 
    /*z-index:10; */

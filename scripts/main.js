@@ -72,6 +72,10 @@ function toggleRecording( e ) {
         audioRecorder.stop();
         e.classList.remove("recording");
         audioRecorder.getBuffers( gotBuffers );
+	$id("record").value="Aloita äänitys";
+	if (!allowRerecording) {
+	    $id("record").disabled=true;
+	}
     } else {
         // start recording
         if (!audioRecorder)
@@ -79,6 +83,7 @@ function toggleRecording( e ) {
         e.classList.add("recording");
         audioRecorder.clear();
         audioRecorder.record();
+	$id("record").value="Lopeta äänitys";
     }
 }
 
