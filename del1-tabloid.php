@@ -4,54 +4,25 @@ require 'php/header.php';
 
 ?>
  
-   <h2>Tehtävä 0: Koenauhoitus</h2>
-   <p>
-   Tervetuloa kokeilemaan varhaista kehitysprototyyppiä puhutun viraan kielen ylioppilaskoejärjestelmästä! Ensin tarkistamme, että tekniikka toimii.
-   <p>
-   Selaimesi on: 
-   <?php 
-   require 'php/get_browser_info.php';
-$ua=get_browser_info();
-
-echo "<b>" . $ua['name'] . "</b> " . $ua['version'] . " (" .$ua['platform'] . "). "; // reports: <br >" . $ua['userAgent'] ;
-
-if ($ua['name'] == "Google Chrome") {
-?>
-Tämä on hyvä.
-  <?php }
-else {
-?>
-<span class=warning>  Tästä tulee vielä sanomista! Nauhoitus ja/tai videoiden näyttäminen voi tuottaa ongelmia. Google Chrome (versio 30 tai uudempi) olisi parempi.</span>
-    <?php } ?>
+   <h2>Tehtävä 1: Lue lehtiotsikot</h2>
    <p>
    Ohjeet:
    <ul>
-   <li> Oikeassa alakulmassa näet videokuvan ja äänen tasomonitorin.
-
-   <li>Kun puhut mikrofoniin, monitorin pitäisi aaltoilla puheesi mukaan. Monitorin sivussa näkyvä palkki ilmoittaa sopivasta äänenpainetasosta.
-
-  <li>Jos et näe monitorissa mitään liikettä on mikrofonissasi ongelma. Annoitko luvan mikrofonin käyttöön? Jos et, voit ladata sivun uudestaan ja tarkistaa, että olet valinnut oikean mikrofonin. Onko mikrofoni päällä? Jos ei, sen voi laittaa päälle järjestelmäsi ääniasetuksista.
-
-  <li>Jos monitori näyttää usein punaista, on mikrofonin äänenvoimakkuus liian kovalla. Voit säätää sitä järjestelmäsi ääniasetuksista tai asettamalla mikrofoni hieman sivuun.
-
-  <li>Jos et näe videokuvaa, etsi selaimen yläpalkista kameraa esittävä nappula ja kliksuttele sitä kautta kameralle toimilupa.
-
-  <li>Jos ei ota toimiakseen, niin pyydä henkilökunta avuksi.
-
-  <li>Kun mikrofoni ja kamera toimivat, paina "Seuraava tehtävä"-nappia. 
-
-<!--
-   <li>Kuuntele kysymys ja vastaa siihen.
-   <ul>
-   <li>Sinulla on 15 sekuntia aikaa vastata. 
-   <li>Nauhoitus alkaa heti kysymyksen jälkeen ja loppuu automaattisesti.
-   <li>Jos vastaat kysymykseen nopeammin, voit siirtyä seuraavaan kysymykseen "lopeta nauhoittaminen"-napilla.
-   <li>Uusi kysymys alkaa heti kun olet vastannut edelliseen.
+   <li> Tarkastele lehtiotsikkoa: Voit harjoitella ensin sen lukemista itseksesi.
+   <li> Kun olet valmis, paina "Aloita äänitys"-nappia.
+  <li> Sinulla on 10 sekuntia aikaa lukea otsikko. Jos olet nopeampi, voit pysäyttää nauhoituksen ennen kuin aika täyttyy.
+  <li> Voit kuunnella nauhoituksesi varmistuaksesi sen onnistumisesta.
+  <li> Jos nauhoitus epäonnistui, voit tehdä sen uudestaa.
+  <li> Kun olet tyytyväinen, paina "seuraava tehtävä" -nappia, jolloin saat seuraavan otsikon luettavaksesi.
    </ul>
-   <li>Toista kunnes kyllästyt.
-   <li>Jos haluat tauon, pidä se nyt tai kysymyssarjan jälkeen.
--->
-   </ul>
+
+   Arvosteluperusteet:
+  <ul>
+  <li>Ääntämisen selkeys
+  <li>Vaadittujen yritysten määärä.
+  </ul>
+  
+
    <a href="#main" class="allClear">Tämä selvä!</a>
    
 </div>
@@ -64,6 +35,7 @@ else {
 <!-- Main tasks -->
    <!-- <video src=01.webm id=stimulusvideo></video>-->
 <div id="prompts">  
+
 <?php
   require 'php/hebrew_fill1.php';
 ?>
@@ -77,7 +49,43 @@ Vi köper begagnade kläder i gott skick
 <p id=clearfills> </p>
 
 
+
+
 </div>
+
+<script type=text/javascript>
+
+  var currentTask=0;
+
+tasks=['Vi köper begagnade kläder i gott skick', 
+       'Allt fler högskolestudenter pluggar på distans i Sverige',
+       'Mörka regnmoln skymmer stora delar av Östersjön ',
+       'Mikrovågsugn säljs för 17 kronor på köksprylsmarknaden',
+       'Bananer med droger i smugglades i tunnelbanan'];
+
+
+function nextTask() {
+  currentTask++;
+  if (currentTask<5) 
+    {
+      document.getElementById("headline").innerHTML=tasks[currentTask];
+      document.getElementById("listenButton").disabled=true;
+      document.getElementById("nextButton").disabled=true;
+    }		   
+  else {
+    window.location.href = "del2-fragor.php";
+  }
+}
+
+
+  function overrideToggleRecording(thing) {
+    
+    toggleRecording(thing)
+  }
+
+
+</script>
+
 
 <?php
   require 'php/controls.php'

@@ -1,7 +1,7 @@
 var timercounter=maxrectime+1;
 setInterval(function () {
     if ( timercounter < maxrectime) {
-	$id("timer").innerHTML=++timercounter;
+	$id("recording").innerHTML= "&#9724; REC " + ++timercounter;
     }
     if (timercounter==maxrectime) {
         $id("record").click();

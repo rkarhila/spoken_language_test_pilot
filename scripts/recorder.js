@@ -73,8 +73,8 @@
 	    news.innerHTML="Recording";*/
 
 	    timercounter=0;
-	    $id("timer").innerHTML="0";
-	    $id("timercontainer").style.visibility = "visible";
+	    $id("recording").innerHTML="&#9724; REC 0" ;
+	    $id("recording").style.visibility = "visible";
 
 	    var recButton = document.getElementById("record");
 	    recButton.innerHTML = '<font style="color:red">'+messages['Stop<br>and upload']+'</font>';
@@ -86,7 +86,7 @@
 	this.stop = function(){
 	    recording = false;	  
 	    timercounter=maxrectime+1;	    
-	    $id("timercontainer").style.visibility = "hidden";
+	    $id("recording").style.visibility = "hidden";
 	    
 	}
 

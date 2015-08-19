@@ -57,7 +57,10 @@ function gotBuffers( buffers ) {
 function doneEncoding( blob ) {
     /* Modified: Set up upload instead of download! */
     
-    Recorder.setupUpload( blob, speaker + "-" + tasknames[currenttask] + '-' + ((recIndex<10)?"0":"") + recIndex + ".wav" );	
+    /* 2015-08-19  Commented out for now: No uploads!!! */
+    /*Recorder.setupUpload( blob, speaker + "-" + tasknames[currenttask] + '-' + ((recIndex<10)?"0":"") + recIndex + ".wav" );	*/
+    Recorder.setupUpload( blob, speaker + "-foo-" + ((recIndex<10)?"0":"") + recIndex + ".wav" );	
+
 
     //Recorder.setupUpload( blob, "myRecording" + ((recIndex<10)?"0":"") + recIndex + ".wav" );
     recIndex++;
