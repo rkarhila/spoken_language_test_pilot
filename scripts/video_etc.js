@@ -66,7 +66,7 @@ var videosizeConstraints = {
       maxHeight: 200
     }
   },
-   audio:true
+   audio:false
 };
 
 
